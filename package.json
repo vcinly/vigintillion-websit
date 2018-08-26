@@ -1,11 +1,7 @@
 {
-  "name": "material-ui-example-webpack",
-  "version": "0.16.4",
-  "description": "Sample project that uses Material-UI",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/callemall/material-ui.git"
-  },
+  "name": "vigintillion",
+  "version": "0.0.1",
+  "description": "vigintillion",
   "scripts": {
     "start": "webpack-dev-server --config webpack-dev-server.config.js --progress --inline --colors",
     "build": "webpack --config webpack-production.config.js --progress --colors"
@@ -23,9 +19,14 @@
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
-    "material-ui": "latest",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "react-tap-event-plugin": "^2.0.1"
+    "@material-ui/core": "latest",
+    "@material-ui/icons": "latest",
+    "big-integer": "latest",
+    "bitcoinjs-lib": "latest",
+    "cross-env": "^5.2.0",
+    "ethereumjs-util": "^5.2.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-tap-event-plugin": "latest"
   }
 }
