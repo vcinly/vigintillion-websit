@@ -226,12 +226,17 @@ class CustomPaginationActionsTable extends React.Component {
   componentDidMount() {
     console.log(location.href)
     /* this.handlePageJump() */
+
     let page = BigInteger.one
-    while (true) {
+    this.fetchData(page)
+    /* this.intervalId = setInterval(() => {
       this.fetchData(page)
       page = page.add(1)
-    }
+    }, 500); */
+  }
 
+  componentWillUnMount () {
+    clearInterval(this.intervalId)
   }
 
   handleChangePage = (event, page) => {
