@@ -23,9 +23,9 @@ const config = {
       }
     }),
     // Minify the bundle
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   sourceMap: true,
+    // }),
     // Transfer Files
     new TransferWebpackPlugin([
       {from: 'www'},
@@ -36,10 +36,12 @@ const config = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          cacheDirectory: true,
-        },
+          loader: 'babel-loader',
+          query: {
+              presets: ['react', 'stage-2', 'es2015'],
+              cacheDirectory: true,
+              plugins: ["transform-class-properties"]
+          },
       },
     ],
   },

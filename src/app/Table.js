@@ -19,7 +19,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import BitcoinLib from 'bitcoinjs-lib';
-import EthereumUtil from 'ethereumjs-util'
+import EthereumUtil from 'ethereumjs-util';
 import red from '@material-ui/core/colors/red';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
@@ -227,7 +227,7 @@ class CustomPaginationActionsTable extends React.Component {
     console.log(location.href)
     /* this.handlePageJump() */
 
-    let page = BigInteger.one
+    let page = (new URL(location.href)).searchParams.get('page') || BigInteger.one
     this.fetchData(page)
     /* this.intervalId = setInterval(() => {
       this.fetchData(page)
@@ -241,6 +241,7 @@ class CustomPaginationActionsTable extends React.Component {
 
   handleChangePage = (event, page) => {
     /* this.setState({ page }); */
+    this.changeUrlPage(page)
     this.fetchData(page)
   };
 
@@ -271,8 +272,14 @@ class CustomPaginationActionsTable extends React.Component {
     } else {
       this.fetchData(pageInput)
     }
-    /* location.href = `?page=${page}` */
+    this.changeUrlPage(page)
   };
+
+  changeUrlPage = (page) => {
+    let newUrl = new URL(location.href)
+    newUrl.searchParams.set('page', page)
+    history.pushState({},0, newUrl.href)
+  }
 
   fetchData = (page) => {
     page = BigInteger(page)
@@ -316,7 +323,8 @@ class CustomPaginationActionsTable extends React.Component {
   }
 
   checkBalance = (item) => {
-    let BTCaddr = ['17Vu7st1U1KwymUKU4jJheHHGRVNqrcfLD']
+      // let BTCaddr = ['17Vu7st1U1KwymUKU4jJheHHGRVNqrcfLD']
+      let BTCaddr = []
     let ETHaddr = []
     if (BTCaddr.includes(item.btcAddress)) {
       return {backgroundColor: BrightRed, color: '#ffffff'}
